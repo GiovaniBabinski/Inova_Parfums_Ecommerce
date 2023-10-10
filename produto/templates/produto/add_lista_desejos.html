@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Lista de desejos {% endblock %}
+{% block body %}
+<div class="container my-5">
+
+    {% if lista_desejos %}
+
+    <div class="row">
+        <h1 class="tit_carrinho p-2 text-white shadow text-center mb-5 shadow bg-danger rounded">Minha lista de
+            desejos
+            <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" fill="currentColor" class="bi bi-heart"
+                 viewBox="0 0 16 16">
+                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+            </svg>
+        </h1>
+
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body bg-light">
+                    <h3 class="mx-4">Lista de desejos</h3>
+
+                    {% for item in lista_desejos %}
+
+                    <div id="pro" class="row">
+                        <input type="hidden" name="prod_id" value="{{item.produto.id}}">
+                        <a href="{% url 'informacoes_produto' item.produto.id %}">
+                            <div class="col-sm-3 text-center align-self-center"><img
+                                    src="{{item.produto.foto_produto.url}}"
+                                    alt="" srcset=""
+                                    class="img-fluid img-thumbnail shadow-sm"
+                                    height="150" width="150">
+                        </a>
+                    </div>
+                    <div class="col-sm-9">
+                        <div>
+                            <h4>{{item.produto.nome_produto}}</h4>
+                            <p class="mb-2 text-muted small">{{item.produto.descricao_produto}}</p>
+
+                            <div class="">
+                                <a href="" class="remove-desejo mt-5 btn btn-danger"
+                                   pid="{{item.produto.id}}">Remover item
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="text-muted">
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<span class="fs-1 text-danger">A lista de desejos está vazia</span>
+{% endif %}
+</div>
+
+{% endblock body %}
+
+{% block footer %}
+<footer style="height:220px;"
+        class="col-12 d-flex container-fluid mt-5 bg-primary text-white shadow fs-5 fw-bold rounded pt-1 fixed-bottom ">
+    <div class="row col-12 " style=" margin-left:65px;">
+        <div class="col-1 row"></div>
+        <div class="col-4 row">
+            <ul class="mt-3" style="list-style:none">
+                <li class="mb-3">CONTATO: 49 988020139</li>
+                <li class="mb-3">EMAIL: inovaparfums@gmail.com</li>
+                <li>ENDEREÇO
+                    <p>Rua Marechal Dutra, n 241</p>
+                </li>
+            </ul>
+        </div>
+        <div class="col-2 row mt-4">
+            <img style="width:180px;height:70px;border-radius:15px;"
+                 src="{% static 'produto/images/banner/logo.png' %}">
+        </div>
+        <div class="col-4 row mt-3 ">
+            <span style="font-size:19px" class="mb-2 ">PEFUMARIA & COSMÉTICOS</span>
+            <ul class="d-flex " style="list-style:none;font-size:19px;">
+                <ul>
+                    <li>Perfumes</li>
+                    <li>Loções</li>
+                    <li>Shampoos</li>
+                    <li>Condicionadores</li>
+                </ul>
+                <ul>
+                    <li>Cremes</li>
+                    <li>Sabonetes</li>
+                    <li>Esmaltes</li>
+                    <li>Maquiagens</li>
+                </ul>
+            </ul>
+        </div>
+        <div class="col-1 row"></div>
+    </div>
+</footer>
+{% endblock footer %}

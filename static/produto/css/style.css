@@ -1,0 +1,90 @@
+/*classes referentes ao template estático navbar.html*/
+.logo_site{
+  margin-left:110px;
+}
+
+.dropdown_menu{
+  margin-left:35px
+}
+
+/*css referente ao template home.html*/
+.img_carrousel{
+  height:1000px;
+  width:100px;
+}
+
+.info_inova_titulo {
+   text-shadow:2px 2px 2px black;
+}
+.rodape{
+  height:220px;
+}
+
+.rodape img{
+  width:180px;
+  height:70px;
+  border-radius:15px;
+}
+
+.lista_cosmeticos{
+  list-style:none;
+  font-size:19px;
+}
+
+.sub_rodape{
+  margin-left:65px;
+}
+
+/*css referente ao template informações_produt.htmlo*/
+
+.tamanho_foto{
+  margin-top:60px;
+  height:490px;
+  width:560px;
+}
+
+.titulo_produto{
+  font-family:Georgia;
+  font-size:50px;
+  color:blue;
+  width:400px;
+  font-weight:700;
+}
+
+/*classes referentes ao template categoria.html*/
+
+.ocultar_produtos{
+  display:None !important;
+}
+
+.card_item{
+  height:320px;
+  border:2px solid yellow;
+}
+
+.btn_ver_mais{
+  text-decoration:None;
+  text-align:center;
+}
+
+.btn_ver_mais img{
+  height:170px;
+  width:150px;
+}
+
+/*classes referentes ao template add_ao_carrinho.html*/
+
+.preco_produto{
+margin-right:50px;
+}
+
+.tit_carrinho{
+text-shadow: 2px 2px 2px black;
+}
+
+
+/*ABAIXO ESTÁ O CSS REFERENTE AOS TEMPLATES DE USUÁRIO*/
+
+/*classes referentes ao template add_ao_carrinho.html*/
+
+

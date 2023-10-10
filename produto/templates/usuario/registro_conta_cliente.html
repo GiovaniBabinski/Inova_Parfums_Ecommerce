@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Sobre {% endblock title %}
+
+{% block body %}
+<div class="container">
+    <div class="row my-3">
+        <div class="col-sm-6 offset-sm-3 shadow p-5 mt-5">
+            <h3>Registrar uma conta</h3>
+            <form action="" novalidate method="POST">{% csrf_token %}
+                {% for fm in form %}
+                {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors | striptags}}</small>
+                {% endfor %}
+
+                <input class="btn btn-success rounded btn-lg mt-3" type="submit" value="Criar conta">
+
+                <div class="text-center text-primary fw-bold">
+                    <small>Já tem conta cadastrada? <a class="text-secondary" href="{% url 'login' %}">Entrar agora</a></small>
+                </div>
+                {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                <p class="alert alert-danger my-3">{{error}}</p>
+                {% endfor %}
+                {% endif %}
+
+                {% if messages %}
+                {% for msg in messages %}
+
+                <div class="alert alert-{{msg.tags}} mt-4 text-center" role="alert">
+                    {{msg}}
+                </div>
+
+                {% endfor %}
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock body %}

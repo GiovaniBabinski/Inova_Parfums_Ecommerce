@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Categorias {% endblock title %}
+
+{% block body %}
+<div class="container-fluid-xl mx-5 px-5 mt-2 ">
+    <div class="row mt-2 pt-5">
+        <form role="search">
+            <input class="form-control col-10 w-25 mt-3" type="search" aria-label="Search" placeholder="Buscar produtos"
+                   name="q">
+
+            <input style="height:40px;" class="btn btn-primary rounded mt-2 " type="submit" value="Buscar">
+
+            <div class="mt-4">
+                <input onclick="mostrar_produtos_masculinos()" class="masculinos bg-primary text-white" type="button"
+                       value="Masculinos">
+                <input onclick="mostrar_produtos_femininos()" class="femininos bg-danger text-white" type="button"
+                       value="Femininos">
+                <input onclick="mostrar_produtos_unissex()" class="unissex bg-success text-white" type="button"
+                       value="Unissex">
+                <input onclick="todas_categorias()" class="unissex bg-success text-white" type="button"
+                       value="Todas as categorias">
+            </div>
+        </form>
+
+        {% if not produto %}
+
+        <span class="fs-3 mt-5 text-danger fw-bold">Nenhum produto encontrado</span>
+        {% endif %}
+
+        {% for pro in produto %}
+        {% if pro.consumidor == 'M' %}
+
+        <div class="produtos_masculinos text-center col-lg-2 mt-4 mb-4 ">
+            <div class="card_item card col-xxl-12 bg-light w-100 h-20 ">
+                <span class="mt-3 fs-5 fw-bold text-primary col-xl-12 ">{{pro.nome_produto}}</span>
+                <div class="card-body bg-light rounded">
+                    <a class="btn_ver_mais mt-4 pro_masculino"
+                       href="{% url 'informacoes_produto' pro.id %}"><img
+                            src="{{pro.foto_produto.url}}/"><br>
+                        <p class="btn btn-warning mt-2 p-2">Ver mais </span></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {% elif pro.consumidor == 'F' %}
+        <div class="produtos_femininos text-center col-lg-2 mt-4 mb-4">
+            <div class="card-item card col-lg bg-light w-100 h-20 ">
+                <span class="mt-3 fs-5 fw-bold text-danger col-lg ">{{pro.nome_produto}}</span>
+                <div class="card-body bg-light">
+                    <a class="btn_ver_mais mt-4 pro_masculino"
+                       href="{% url 'informacoes_produto' pro.id %}"><img
+                            src="{{pro.foto_produto.url}}/"><br>
+                        <p class="btn btn-warning mt-2 p-2">Ver mais </span></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {% elif pro.consumidor == 'U' %}
+
+        <div class="produtos_unissex text-center col-lg-2 mt-4 mb-4">
+            <div class="card-item card col-lg bg-light w-100 h-20 ">
+                <span class="mt-3 fs-5 fw-bold text-success col-lg ">{{pro.nome_produto}}</span>
+                <div class="card-body bg-light">
+                    <a class="btn_ver_mais mt-4 pro_masculino"
+                       href="{% url 'informacoes_produto' pro.id %}"><img
+                            style="height:170px; width:150px;" src="{{pro.foto_produto.url}}/"><br>
+                        <p class="btn btn-warning mt-2 p-2">Ver mais </span></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+
+        {% endfor %}
+
+        <div class="mt-5"></div>
+    </div>
+</div>
+
+{% endblock %}

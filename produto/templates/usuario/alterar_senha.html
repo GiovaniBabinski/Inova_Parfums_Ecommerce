@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Alterar Senha {% endblock title %}
+
+{% block body %}
+
+<div class="container my-5">
+    <div class="row">
+        <h3>Bem Vindo <span class="text-capitalize">{{request.user.username | capfirst}}</span></h3>
+        <div class="col-sm-2 border-end">
+            <ul>
+                <li class="d-grid"><a class="text-decoration-none text-center shadow mt-3 btn btn-primary"
+                                      href="{% url 'profile' %}">Voltar
+                    ao perfil
+                </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-sm-9 offset-sm-1">
+            <form action="" method="POST">{% csrf_token %}
+                {% for fm in form %}
+                {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors | striptags}}</small><br/>
+                {% endfor %}
+                <div class="col-12 mt-3">
+                    <button class="btn btn-success" type="submit">Enviar</button>
+                </div>
+
+                {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+
+                <p class="alert alert-danger my-3">{{error}}</p>
+
+                {% endfor %}
+                {% endif %}
+
+                {% if messages %}
+
+                {% for msg in messages %}
+                <div class="alert alert-{{msg.tags}}" role="alert">
+                    {{msg}}
+                </div>
+                {% endfor %}
+
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

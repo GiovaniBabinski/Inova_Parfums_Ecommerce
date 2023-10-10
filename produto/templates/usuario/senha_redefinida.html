@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Alterar Senha {% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="row">
+        <h3>Bem Vindo <span class="text-capitalize">{{request.user.username | capfirst}}</span></h3>
+        <div class="col-sm-2 border-end">
+            <ul>
+                <li class="d-grid"><a class="text-decoration-none text-center shadow mt-3 bg-white rounded text-primary" href="{% url 'profile' %}">Voltar ao perfil
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-sm-9 offset-sm-1 text-center">
+            <h3 class="bg-success text-white shadow p-5 w-50 rounded">A senha foi alterada com sucesso</h3>
+        </div>
+    </div>
+</div>
+{% endblock body %}

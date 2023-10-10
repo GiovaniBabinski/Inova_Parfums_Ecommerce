@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Informações sobre o produto {% endblock %}
+
+
+{% block body %}
+<div class="container">
+    <div class="row flex justify-content-between ">
+        <div class="tamanho_foto col-lg-5 ">
+            <img class=" col-xs-6 cols-sm-12 col-lg-12 mt-3 text-sm-center w-100 h-100 rounded"
+                 src="{{produto.foto_produto.url}}" alt="foto_produto"/>
+        </div>
+
+        <div class=" col-lg-5 mt-5 pt-5">
+            <h1 class="titulo_produto">{{produto.nome_produto}}</h1>
+            <span class="fs-2 text-decoration-line-throught text-muted fs-5">De
+                <del>R${{produto.preco_venda}}0 REAIS</del>
+            </span>
+            <hr class="text-danger">
+            <h2 class="text-white bg-success rounded p-1 w-75 mb-3">Para: R$ {{produto.preco_desconto}}0 reais</h2>
+            <h3 class="mb-2">Características do produto</h3>
+            <ul class="mt-2 fs-5">
+                <li>{{produto.descricao_produto}}</li>
+
+                <div class="buttons row flex" style="font-family:Rajdhani;">
+                    <div>
+                        <form action="/add-ao-carrinho" class="d-inline">
+                            <input type="hidden" name="prod_id" value="{{produto.id}}">
+
+                            {% if produto_no_carrinho %}
+
+                            <button disabled
+                                    class="fs-2 mt-5 d-grid gap-2 btn btn-danger p-1  btn-lg text-decoration-none text-white">
+                                Já está no carrinho
+                            </button>
+
+                            {% else %}
+
+                            <button type="submit"
+                                    class="fs-2 mt-5 pt-1 d-grid gap-2 btn btn-primary p-1 btn-lg text-decoration-none text-white">
+                                Adicionar
+                                no carrinho
+                            </button>
+                            {% endif %}
+                        </form>
+                    </div>
+
+                    <div class="mt-0">
+                        <form action="/add_lista_desejos">
+                            <input type="hidden" name="prod_id" value="{{produto.id}}">
+                            {% if lista_desejos %}
+                            <button disabled type="submit"
+                                    class="fs-2 mt-2 pt-1 d-grid gap-2 btn btn-success p-1 btn-lg text-decoration-none text-white">
+                                Adicionado
+                                à lista de desejos
+                            </button>
+                            {% else %}
+                            <button type="submit"
+                                    class="fs-2 mt-2 pt-1 d-grid gap-2 btn btn-success p-1 btn-lg text-decoration-none text-white">
+                                Adicionar
+                                à lista de desejos
+                            </button>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+
+
+

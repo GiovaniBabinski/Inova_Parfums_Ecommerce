@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Sobre Nós {% endblock title %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row my-3">
+        <div class="col-sm-6 offset-sm-3">
+            <h3>Entrar na conta</h3>
+            <hr/>
+            <form class="shadow p-5" action="" novalidate method="POST"> {% csrf_token %}
+
+                {% for fm in form %}
+
+                {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors | striptags }}</small>
+                {% endfor %}
+
+                <small><a href="{% url 'password_reset' %}">Esqueceu sua senha?</a></small><br/>
+                <input class="btn btn-primary mt-3 " type="submit" value="Entrar">
+                <div class="text-center text-primary fw-bold mt-4">
+                    <small class="text-dark"> Novo usuário? &nbsp; &nbsp; <a
+                            class="text-decoration-none bg-dark rounded text-white p-2"
+                            href="{% url 'registro_conta' %}">Criar uma conta</a></small>
+                </div>
+                {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+
+                <p class="alert-alert-danger my-3">{{error}}</p>
+
+                {% endfor %}
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
